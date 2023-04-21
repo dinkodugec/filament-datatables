@@ -6,10 +6,12 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
+        "filament/filament":"^2.0",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.8",
         "laravel/sanctum": "^3.2",
-        "laravel/tinker": "^2.8"
+        "laravel/tinker": "^2.8",
+        "livewire/livewire": "^2.12"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
@@ -40,6 +42,9 @@
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
         ],
+        "post-update-cmd": [
+            "@php artisan filament:upgrade"
+        ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
@@ -47,6 +52,7 @@
             "@php artisan key:generate --ansi"
         ]
     },
+    
     "extra": {
         "laravel": {
             "dont-discover": []
