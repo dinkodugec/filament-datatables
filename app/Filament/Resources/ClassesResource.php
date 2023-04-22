@@ -7,10 +7,13 @@ use App\Filament\Resources\ClassesResource\RelationManagers;
 use App\Models\Classes;
 use Filament\Forms;
 use Filament\Forms\Components\TextInput;
+/* use Filament\Pages\Actions\DeleteAction; */
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Actions\DeleteAction;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -36,13 +39,15 @@ class ClassesResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('name')
+                ->sortable()
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                DeleteAction::make()  //so, in table is delete action
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
