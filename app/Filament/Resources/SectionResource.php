@@ -12,6 +12,8 @@ use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Actions\DeleteAction;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -39,13 +41,19 @@ class SectionResource extends Resource
     {
         return $table
             ->columns([
-                //
+                TextColumn::make('name')
+                ->sortable()
+                ->searchable(),
+              TextColumn::make('class.name')  //adding this in table will show relation section-class
+              ->sortable()
+              ->searchable(),
             ])
             ->filters([
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\DeleteBulkAction::make(),
