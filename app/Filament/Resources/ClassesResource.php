@@ -14,6 +14,7 @@ use Filament\Resources\Table;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Columns\TagsColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -40,7 +41,11 @@ class ClassesResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('name')
-                ->sortable()
+                ->sortable(),
+                TagsColumn::make('sections.name'), //section is relation and name is column
+                TextColumn::make('students_count')
+                    ->counts('students') //students is relation
+                    ->label('Students Count'),
             ])
             ->filters([
                 //
